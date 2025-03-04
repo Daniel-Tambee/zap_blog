@@ -46,7 +46,7 @@ export class PostService {
 
   async findOne(id: string) {
     try {
-      const post = await this.db.post.findUnique({
+      const post = await this.db.post.findUniqueOrThrow({
         where: { id },
         include: { tags: true },
       });

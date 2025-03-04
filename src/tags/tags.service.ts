@@ -32,7 +32,7 @@ export class TagsService {
 
   async findOne(id: string) {
     try {
-      const tag = await this.db.tags.findUnique({
+      const tag = await this.db.tags.findUniqueOrThrow({
         where: { id },
       });
       if (!tag) {
