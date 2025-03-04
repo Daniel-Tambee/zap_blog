@@ -71,9 +71,16 @@ let PostService = class PostService {
     }
     async update(id, updatePostDto) {
         try {
+            const { tags } = updatePostDto, postData = __rest(updatePostDto, ["tags"]);
+            const updateData = Object.assign({}, postData);
+            if (tags) {
+                updateData.tags = {
+                    set: tags.map((tagId) => ({ id: tagId })),
+                };
+            }
             const post = await this.db.post.update({
                 where: { id },
-                data: updatePostDto,
+                data: updateData,
                 include: { tags: true },
             });
             return post;

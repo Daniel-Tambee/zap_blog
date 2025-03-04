@@ -61,13 +61,23 @@ export class PostService {
 
   async update(id: string, updatePostDto: UpdatePostDto) {
     try {
-      // In this implementation we update only the post's main fields.
-      // If tag updates are needed, additional logic will be required.
+      const { tags, ...postData } = updatePostDto; // Extract tags from DTO
+
+      const updateData: any = { ...postData };
+
+      // Handle tag updates only if `tags` are provided
+      if (tags) {
+        updateData.tags = {
+          set: tags.map((tagId) => ({ id: tagId })), // Ensure the correct format
+        };
+      }
+
       const post = await this.db.post.update({
         where: { id },
-        data: updatePostDto,
+        data: updateData,
         include: { tags: true },
       });
+
       return post;
     } catch (error) {
       throw error;
