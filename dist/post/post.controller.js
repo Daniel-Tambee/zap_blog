@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PostController = void 0;
 const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
 const post_service_1 = require("./post.service");
 const create_post_dto_1 = require("./dto/create-post.dto");
 const update_post_dto_1 = require("./dto/update-post.dto");
@@ -26,10 +27,7 @@ let PostController = class PostController {
         return await this.postService.create(createPostDto);
     }
     async findAll(category) {
-        if (category) {
-            return await this.postService.findAll(category);
-        }
-        return await this.postService.findAll(null);
+        return await this.postService.findAll(category || null);
     }
     async findOne(id) {
         return await this.postService.findOne(id);
@@ -43,6 +41,9 @@ let PostController = class PostController {
 };
 __decorate([
     (0, common_1.Post)(),
+    (0, swagger_1.ApiOperation)({ summary: 'Create a new post' }),
+    (0, swagger_1.ApiResponse)({ status: 201, description: 'Post successfully created' }),
+    (0, swagger_1.ApiBody)({ type: create_post_dto_1.CreatePostDTO }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_post_dto_1.CreatePostDTO]),
@@ -50,6 +51,9 @@ __decorate([
 ], PostController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
+    (0, swagger_1.ApiOperation)({ summary: 'Get all posts (optional filtering by category)' }),
+    (0, swagger_1.ApiQuery)({ name: 'category', required: false, enum: client_1.Category, description: 'Filter by category' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'List of posts retrieved successfully' }),
     __param(0, (0, common_1.Query)('category')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -57,6 +61,9 @@ __decorate([
 ], PostController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
+    (0, swagger_1.ApiOperation)({ summary: 'Get a post by ID' }),
+    (0, swagger_1.ApiParam)({ name: 'id', required: true, description: 'Post ID' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Post retrieved successfully' }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -64,6 +71,10 @@ __decorate([
 ], PostController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Patch)(':id'),
+    (0, swagger_1.ApiOperation)({ summary: 'Update a post by ID' }),
+    (0, swagger_1.ApiParam)({ name: 'id', required: true, description: 'Post ID' }),
+    (0, swagger_1.ApiBody)({ type: update_post_dto_1.UpdatePostDto }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Post updated successfully' }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -72,12 +83,16 @@ __decorate([
 ], PostController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
+    (0, swagger_1.ApiOperation)({ summary: 'Delete a post by ID' }),
+    (0, swagger_1.ApiParam)({ name: 'id', required: true, description: 'Post ID' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Post deleted successfully' }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], PostController.prototype, "remove", null);
 PostController = __decorate([
+    (0, swagger_1.ApiTags)('Post'),
     (0, common_1.Controller)('post'),
     __metadata("design:paramtypes", [post_service_1.PostService])
 ], PostController);
