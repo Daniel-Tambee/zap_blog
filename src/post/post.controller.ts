@@ -34,6 +34,12 @@ export class PostController {
   async findAll(@Query('category') category?: Category) {
     return await this.postService.findAll(category || null);
   }
+  @Get()
+  @ApiOperation({ summary: 'Get all latest posts' })
+  @ApiResponse({ status: 200, description: 'List of  recent posts retrieved successfully' })
+  async recentPosts() {
+    return await this.postService.getRecentPosts();
+  }
 
   @Get(':id')
   @ApiOperation({ summary: 'Get a post by ID' })

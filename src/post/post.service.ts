@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreatePostDTO } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { DbService } from 'src/db/db.service';
-import { Category } from '@prisma/client';
+import { Category, Post } from '@prisma/client';
 
 @Injectable()
 export class PostService {
@@ -79,6 +79,19 @@ export class PostService {
       });
 
       return post;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getRecentPosts(): Promise<Post[]> {
+    try {
+      const latestPosts = await this.db.post.findMany({
+        orderBy: {
+          created_at: 'desc',
+        },
+      });
+      return latestPosts;
     } catch (error) {
       throw error;
     }

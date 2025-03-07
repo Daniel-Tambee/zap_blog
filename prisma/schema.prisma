@@ -25,6 +25,12 @@ model Post {
   updated_at DateTime @updatedAt()
 }
 
+model Jobs {
+  id         String   @id @default(uuid()) @map("_id")
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt()
+}
+
 enum Category {
   Crypto_Trader_Insights
   Crypto_Beginner
