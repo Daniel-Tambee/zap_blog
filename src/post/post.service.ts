@@ -32,6 +32,12 @@ export class PostService {
 
   async findAll(category: Category) {
     try {
+      if (!category) {
+        const posts = await this.db.post.findMany({
+          include: { tags: true },
+        });
+        return posts;
+      }
       // If a category is provided, filter by it.
       // The original switch-case was removed in favor of a dynamic query filter.
       const posts = await this.db.post.findMany({
