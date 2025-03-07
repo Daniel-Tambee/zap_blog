@@ -88,7 +88,7 @@ __decorate([
         status: 200,
         description: 'Other jobs retrieved successfully.',
     }),
-    (0, common_1.Get)('other/jobs'),
+    (0, common_1.Get)('otherJobs'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)

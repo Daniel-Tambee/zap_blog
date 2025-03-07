@@ -83,7 +83,7 @@ export class CareersController {
     status: 200,
     description: 'Other jobs retrieved successfully.',
   })
-  @Get('other/jobs')
+  @Get('otherJobs')
   async getOtherJobs(): Promise<Jobs[]> {
     return await this.careersService.getOtherJobs();
   }
