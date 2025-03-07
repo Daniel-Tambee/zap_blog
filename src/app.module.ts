@@ -3,9 +3,10 @@ import { PostModule } from './post/post.module';
 import { DbModule } from './db/db.module';
 import { Module } from '@nestjs/common';
 import { TagsModule } from './tags/tags.module';
+import { CareersModule } from './careers/careers.module';
 
 @Module({
-  imports: [PostModule, DbModule, TagsModule],
+  imports: [PostModule, DbModule, TagsModule, CareersModule],
   controllers: [],
   providers: [],
 })

@@ -9,7 +9,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
@@ -26,9 +26,15 @@ model Post {
 }
 
 model Jobs {
-  id         String   @id @default(uuid()) @map("_id")
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt()
+  id                String   @id @default(uuid()) @map("_id")
+  title             String
+  telecommuting     String[]
+  Job_summary       String
+  Requirements      String
+  Experience        String
+  What_you_will_get String
+  created_at        DateTime @default(now())
+  updated_at        DateTime @updatedAt()
 }
 
 enum Category {
