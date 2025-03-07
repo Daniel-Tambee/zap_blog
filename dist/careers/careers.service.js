@@ -16,20 +16,65 @@ let CareersService = class CareersService {
     constructor(db) {
         this.db = db;
     }
-    create(createJobsDto) {
-        throw new Error('Method not implemented.');
+    async create(createJobsDto) {
+        try {
+            const newJob = await this.db.jobs.create({
+                data: createJobsDto,
+            });
+            return newJob;
+        }
+        catch (error) {
+            console.error('Error creating job:', error);
+            throw new Error('Failed to create job');
+        }
     }
-    findOne(id) {
-        throw new Error('Method not implemented.');
+    async findOne(id) {
+        try {
+            const job = await this.db.jobs.findUnique({
+                where: { id },
+            });
+            if (!job) {
+                throw new Error('Job not found');
+            }
+            return job;
+        }
+        catch (error) {
+            console.error(`Error fetching job with ID ${id}:`, error);
+            throw new Error('Failed to fetch job');
+        }
     }
-    findAll() {
-        throw new Error('Method not implemented.');
+    async findAll() {
+        try {
+            const jobs = await this.db.jobs.findMany();
+            return jobs;
+        }
+        catch (error) {
+            console.error('Error fetching all jobs:', error);
+            throw new Error('Failed to fetch jobs');
+        }
     }
-    update(id, updateJobsDto) {
-        throw new Error('Method not implemented.');
+    async update(id, updateJobsDto) {
+        try {
+            const updatedJob = await this.db.jobs.update({
+                where: { id },
+                data: updateJobsDto,
+            });
+            return updatedJob;
+        }
+        catch (error) {
+            console.error(`Error updating job with ID ${id}:`, error);
+            throw new Error('Failed to update job');
+        }
     }
-    getOtherJobs() {
-        throw new Error('Method not implemented.');
+    async getOtherJobs() {
+        try {
+            const otherJobs = await this.db.jobs.findMany({});
+            return otherJobs;
+        }
+        catch (error) {
+            console.error('Error fetching other jobs:', error);
+            throw new Error('Failed to fetch other jobs');
+        }
     }
 };
 CareersService = __decorate([

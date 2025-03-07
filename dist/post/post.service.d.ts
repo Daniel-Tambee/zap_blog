@@ -7,15 +7,15 @@ export declare class PostService {
     constructor(db: DbService);
     create(createPostDto: CreatePostDTO): Promise<{
         tags: {
-            id: string;
             name: string;
+            id: string;
             postId: string;
             created_at: Date;
             updated_at: Date;
         }[];
     } & {
-        image: string;
         title: string;
+        image: string;
         text: string;
         author: string;
         category: import(".prisma/client").$Enums.Category;
@@ -25,15 +25,15 @@ export declare class PostService {
     }>;
     findAll(category: Category): Promise<({
         tags: {
-            id: string;
             name: string;
+            id: string;
             postId: string;
             created_at: Date;
             updated_at: Date;
         }[];
     } & {
-        image: string;
         title: string;
+        image: string;
         text: string;
         author: string;
         category: import(".prisma/client").$Enums.Category;
@@ -43,15 +43,15 @@ export declare class PostService {
     })[]>;
     findOne(id: string): Promise<{
         tags: {
-            id: string;
             name: string;
+            id: string;
             postId: string;
             created_at: Date;
             updated_at: Date;
         }[];
     } & {
-        image: string;
         title: string;
+        image: string;
         text: string;
         author: string;
         category: import(".prisma/client").$Enums.Category;
@@ -61,15 +61,15 @@ export declare class PostService {
     }>;
     update(id: string, updatePostDto: UpdatePostDto): Promise<{
         tags: {
-            id: string;
             name: string;
+            id: string;
             postId: string;
             created_at: Date;
             updated_at: Date;
         }[];
     } & {
-        image: string;
         title: string;
+        image: string;
         text: string;
         author: string;
         category: import(".prisma/client").$Enums.Category;
@@ -79,8 +79,8 @@ export declare class PostService {
     }>;
     getRecentPosts(): Promise<Post[]>;
     remove(id: string): Promise<{
-        image: string;
         title: string;
+        image: string;
         text: string;
         author: string;
         category: import(".prisma/client").$Enums.Category;

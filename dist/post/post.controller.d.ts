@@ -7,15 +7,15 @@ export declare class PostController {
     constructor(postService: PostService);
     create(createPostDto: CreatePostDTO): Promise<{
         tags: {
-            id: string;
             name: string;
+            id: string;
             postId: string;
             created_at: Date;
             updated_at: Date;
         }[];
     } & {
-        image: string;
         title: string;
+        image: string;
         text: string;
         author: string;
         category: import(".prisma/client").$Enums.Category;
@@ -25,15 +25,15 @@ export declare class PostController {
     }>;
     findAll(category?: Category): Promise<({
         tags: {
-            id: string;
             name: string;
+            id: string;
             postId: string;
             created_at: Date;
             updated_at: Date;
         }[];
     } & {
-        image: string;
         title: string;
+        image: string;
         text: string;
         author: string;
         category: import(".prisma/client").$Enums.Category;
@@ -42,8 +42,8 @@ export declare class PostController {
         updated_at: Date;
     })[]>;
     recentPosts(): Promise<{
-        image: string;
         title: string;
+        image: string;
         text: string;
         author: string;
         category: import(".prisma/client").$Enums.Category;
@@ -53,15 +53,15 @@ export declare class PostController {
     }[]>;
     findOne(id: string): Promise<{
         tags: {
-            id: string;
             name: string;
+            id: string;
             postId: string;
             created_at: Date;
             updated_at: Date;
         }[];
     } & {
-        image: string;
         title: string;
+        image: string;
         text: string;
         author: string;
         category: import(".prisma/client").$Enums.Category;
@@ -71,15 +71,15 @@ export declare class PostController {
     }>;
     update(id: string, updatePostDto: UpdatePostDto): Promise<{
         tags: {
-            id: string;
             name: string;
+            id: string;
             postId: string;
             created_at: Date;
             updated_at: Date;
         }[];
     } & {
-        image: string;
         title: string;
+        image: string;
         text: string;
         author: string;
         category: import(".prisma/client").$Enums.Category;
@@ -88,8 +88,8 @@ export declare class PostController {
         updated_at: Date;
     }>;
     remove(id: string): Promise<{
-        image: string;
         title: string;
+        image: string;
         text: string;
         author: string;
         category: import(".prisma/client").$Enums.Category;

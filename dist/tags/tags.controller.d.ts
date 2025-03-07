@@ -5,38 +5,38 @@ export declare class TagsController {
     private readonly tagsService;
     constructor(tagsService: TagsService);
     create(createTagDto: CreateTagDto): Promise<{
+        name: string;
         id: string;
+        postId: string;
         created_at: Date;
         updated_at: Date;
-        name: string;
-        postId: string;
     }>;
     findAll(): Promise<{
+        name: string;
         id: string;
+        postId: string;
         created_at: Date;
         updated_at: Date;
-        name: string;
-        postId: string;
     }[]>;
     findOne(id: string): Promise<{
+        name: string;
         id: string;
+        postId: string;
         created_at: Date;
         updated_at: Date;
-        name: string;
-        postId: string;
     }>;
     update(id: string, updateTagDto: UpdateTagDto): Promise<{
+        name: string;
         id: string;
+        postId: string;
         created_at: Date;
         updated_at: Date;
-        name: string;
-        postId: string;
     }>;
     remove(id: string): Promise<{
+        name: string;
         id: string;
+        postId: string;
         created_at: Date;
         updated_at: Date;
-        name: string;
-        postId: string;
     }>;
 }
