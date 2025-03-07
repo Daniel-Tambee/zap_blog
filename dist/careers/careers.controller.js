@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const careers_service_1 = require("./careers.service");
 const swagger_1 = require("@nestjs/swagger");
 const UpdateCareerDto_1 = require("./UpdateCareerDto");
+const CreateCareerDTO_1 = require("./CreateCareerDTO");
 let CareersController = class CareersController {
     constructor(careersService) {
         this.careersService = careersService;
@@ -46,7 +47,7 @@ __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [CreateCareerDTO]),
+    __metadata("design:paramtypes", [CreateCareerDTO_1.CreateCareerDTO]),
     __metadata("design:returntype", Promise)
 ], CareersController.prototype, "create", null);
 __decorate([

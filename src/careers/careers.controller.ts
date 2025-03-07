@@ -3,6 +3,7 @@ import { CareersService } from './careers.service';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { Jobs } from '@prisma/client';
 import { UpdateCareerDto } from './UpdateCareerDto';
+import { CreateCareerDTO } from "./CreateCareerDTO";
 
 @ApiTags('Careers')
 @Controller('careers')

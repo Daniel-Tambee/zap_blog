@@ -1,5 +1,6 @@
 import { Jobs } from '@prisma/client';
 import { UpdateCareerDto } from './UpdateCareerDto';
+import { CreateCareerDTO } from './CreateCareerDTO';
 export interface ICareers {
     create(createJobsDto: CreateCareerDTO): any;
     findOne(id: string): Promise<Jobs>;

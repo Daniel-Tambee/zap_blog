@@ -3,6 +3,7 @@ import { DbService } from 'src/db/db.service';
 import { ICareers } from './careers.interface';
 import { Jobs } from '@prisma/client';
 import { UpdateCareerDto } from './UpdateCareerDto';
+import { CreateCareerDTO } from './CreateCareerDTO';
 
 @Injectable()
 export class CareersService implements ICareers {

@@ -1,4 +1,4 @@
-class CreateCareerDTO {
+export class CreateCareerDTO {
   title: string;
   telecommuting: string[];
   jobSummary: string; // maps to Job_summary

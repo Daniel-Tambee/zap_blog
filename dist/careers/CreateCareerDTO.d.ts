@@ -1,4 +1,4 @@
-declare class CreateCareerDTO {
+export declare class CreateCareerDTO {
     title: string;
     telecommuting: string[];
     jobSummary: string;
