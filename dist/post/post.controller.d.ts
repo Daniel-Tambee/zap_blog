@@ -8,10 +8,10 @@ export declare class PostController {
     create(createPostDto: CreatePostDTO): Promise<{
         tags: {
             id: string;
-            created_at: Date;
-            updated_at: Date;
             name: string;
             postId: string;
+            created_at: Date;
+            updated_at: Date;
         }[];
     } & {
         image: string;
@@ -26,10 +26,10 @@ export declare class PostController {
     findAll(category?: Category): Promise<({
         tags: {
             id: string;
-            created_at: Date;
-            updated_at: Date;
             name: string;
             postId: string;
+            created_at: Date;
+            updated_at: Date;
         }[];
     } & {
         image: string;
@@ -41,13 +41,23 @@ export declare class PostController {
         created_at: Date;
         updated_at: Date;
     })[]>;
+    recentPosts(): Promise<{
+        image: string;
+        title: string;
+        text: string;
+        author: string;
+        category: import(".prisma/client").$Enums.Category;
+        id: string;
+        created_at: Date;
+        updated_at: Date;
+    }[]>;
     findOne(id: string): Promise<{
         tags: {
             id: string;
-            created_at: Date;
-            updated_at: Date;
             name: string;
             postId: string;
+            created_at: Date;
+            updated_at: Date;
         }[];
     } & {
         image: string;
@@ -62,10 +72,10 @@ export declare class PostController {
     update(id: string, updatePostDto: UpdatePostDto): Promise<{
         tags: {
             id: string;
-            created_at: Date;
-            updated_at: Date;
             name: string;
             postId: string;
+            created_at: Date;
+            updated_at: Date;
         }[];
     } & {
         image: string;

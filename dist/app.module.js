@@ -11,11 +11,13 @@ const post_module_1 = require("./post/post.module");
 const db_module_1 = require("./db/db.module");
 const common_1 = require("@nestjs/common");
 const tags_module_1 = require("./tags/tags.module");
+const careers_module_1 = require("./careers/careers.module");
+const category_module_1 = require("./category/category.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [post_module_1.PostModule, db_module_1.DbModule, tags_module_1.TagsModule],
+        imports: [post_module_1.PostModule, db_module_1.DbModule, tags_module_1.TagsModule, careers_module_1.CareersModule, category_module_1.CategoryModule],
         controllers: [],
         providers: [],
     })

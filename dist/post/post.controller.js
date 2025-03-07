@@ -29,6 +29,9 @@ let PostController = class PostController {
     async findAll(category) {
         return await this.postService.findAll(category || null);
     }
+    async recentPosts() {
+        return await this.postService.getRecentPosts();
+    }
     async findOne(id) {
         return await this.postService.findOne(id);
     }
@@ -59,6 +62,14 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], PostController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Get)(),
+    (0, swagger_1.ApiOperation)({ summary: 'Get all latest posts' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'List of  recent posts retrieved successfully' }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], PostController.prototype, "recentPosts", null);
 __decorate([
     (0, common_1.Get)(':id'),
     (0, swagger_1.ApiOperation)({ summary: 'Get a post by ID' }),

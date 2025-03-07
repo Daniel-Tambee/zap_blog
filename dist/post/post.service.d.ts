@@ -1,17 +1,17 @@
 import { CreatePostDTO } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { DbService } from 'src/db/db.service';
-import { Category } from '@prisma/client';
+import { Category, Post } from '@prisma/client';
 export declare class PostService {
     private readonly db;
     constructor(db: DbService);
     create(createPostDto: CreatePostDTO): Promise<{
         tags: {
             id: string;
-            created_at: Date;
-            updated_at: Date;
             name: string;
             postId: string;
+            created_at: Date;
+            updated_at: Date;
         }[];
     } & {
         image: string;
@@ -26,10 +26,10 @@ export declare class PostService {
     findAll(category: Category): Promise<({
         tags: {
             id: string;
-            created_at: Date;
-            updated_at: Date;
             name: string;
             postId: string;
+            created_at: Date;
+            updated_at: Date;
         }[];
     } & {
         image: string;
@@ -44,10 +44,10 @@ export declare class PostService {
     findOne(id: string): Promise<{
         tags: {
             id: string;
-            created_at: Date;
-            updated_at: Date;
             name: string;
             postId: string;
+            created_at: Date;
+            updated_at: Date;
         }[];
     } & {
         image: string;
@@ -62,10 +62,10 @@ export declare class PostService {
     update(id: string, updatePostDto: UpdatePostDto): Promise<{
         tags: {
             id: string;
-            created_at: Date;
-            updated_at: Date;
             name: string;
             postId: string;
+            created_at: Date;
+            updated_at: Date;
         }[];
     } & {
         image: string;
@@ -77,6 +77,7 @@ export declare class PostService {
         created_at: Date;
         updated_at: Date;
     }>;
+    getRecentPosts(): Promise<Post[]>;
     remove(id: string): Promise<{
         image: string;
         title: string;

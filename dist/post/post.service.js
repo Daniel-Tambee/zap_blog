@@ -30,20 +30,40 @@ let PostService = class PostService {
     async create(createPostDto) {
         try {
             const { tags } = createPostDto, postData = __rest(createPostDto, ["tags"]);
+            const tagRecords = await Promise.all(tags.map(async (tagDto) => {
+                const { name } = tagDto;
+                const existingTag = await this.db.tags.findUnique({
+                    where: { name },
+                });
+                if (existingTag) {
+                    return { id: existingTag.id };
+                }
+                const newTag = await this.db.tags.create({
+                    data: { name },
+                });
+                return { id: newTag.id };
+            }));
             const post = await this.db.post.create({
                 data: Object.assign(Object.assign({}, postData), { tags: {
-                        create: tags.map((tagName) => ({ name: tagName })),
+                        connect: tagRecords,
                     } }),
                 include: { tags: true },
             });
             return post;
         }
         catch (error) {
-            throw error;
+            console.error('Error creating post:', error);
+            throw new Error('Failed to create post');
         }
     }
     async findAll(category) {
         try {
+            if (!category) {
+                const posts = await this.db.post.findMany({
+                    include: { tags: true },
+                });
+                return posts;
+            }
             const posts = await this.db.post.findMany({
                 where: { category },
                 include: { tags: true },
@@ -56,7 +76,7 @@ let PostService = class PostService {
     }
     async findOne(id) {
         try {
-            const post = await this.db.post.findUnique({
+            const post = await this.db.post.findUniqueOrThrow({
                 where: { id },
                 include: { tags: true },
             });
@@ -84,6 +104,19 @@ let PostService = class PostService {
                 include: { tags: true },
             });
             return post;
+        }
+        catch (error) {
+            throw error;
+        }
+    }
+    async getRecentPosts() {
+        try {
+            const latestPosts = await this.db.post.findMany({
+                orderBy: {
+                    created_at: 'desc',
+                },
+            });
+            return latestPosts;
         }
         catch (error) {
             throw error;

@@ -14,15 +14,16 @@ datasource db {
 }
 
 model Post {
-  id         String   @id @default(uuid()) @map("_id")
+  id         String          @id @default(uuid()) @map("_id")
   image      String
   title      String
   text       String
   author     String
   tags       Tags[]
-  category   Category @default(Opinion_Pieces)
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt()
+  category   Category        @default(Opinion_Pieces)
+  created_at DateTime        @default(now())
+  updated_at DateTime        @updatedAt()
+  Categories CategoryThing[]
 }
 
 model Jobs {
@@ -42,6 +43,15 @@ enum Category {
   Crypto_Beginner
   Press
   Opinion_Pieces
+}
+
+model CategoryThing {
+  id         String   @id @default(uuid()) @map("_id")
+  name       String
+  Posts      Post?    @relation(fields: [postId], references: [id])
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt()
+  postId     String?
 }
 
 model Tags {

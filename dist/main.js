@@ -5,6 +5,11 @@ const app_module_1 = require("./app.module");
 const swagger_1 = require("@nestjs/swagger");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
+    app.enableCors({
+        origin: '*',
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        allowedHeaders: 'Content-Type, Authorization',
+    });
     const config = new swagger_1.DocumentBuilder()
         .setTitle('API Documentation')
         .setDescription('API description for your NestJS project')
