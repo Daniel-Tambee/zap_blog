@@ -7,4 +7,5 @@ export declare class CreatePostDTO {
     author: string;
     tags: CreateTagDto[];
     category?: Category;
+    Categories?: string[];
 }

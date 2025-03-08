@@ -8,8 +8,15 @@ export declare class PostService {
     create(createPostDto: CreatePostDTO): Promise<{
         tags: {
             name: string;
-            id: string;
             postId: string;
+            id: string;
+            created_at: Date;
+            updated_at: Date;
+        }[];
+        Categories: {
+            name: string;
+            postId: string;
+            id: string;
             created_at: Date;
             updated_at: Date;
         }[];
@@ -26,8 +33,8 @@ export declare class PostService {
     findAll(category: Category): Promise<({
         tags: {
             name: string;
-            id: string;
             postId: string;
+            id: string;
             created_at: Date;
             updated_at: Date;
         }[];
@@ -44,8 +51,8 @@ export declare class PostService {
     findOne(id: string): Promise<{
         tags: {
             name: string;
-            id: string;
             postId: string;
+            id: string;
             created_at: Date;
             updated_at: Date;
         }[];
@@ -62,8 +69,8 @@ export declare class PostService {
     update(id: string, updatePostDto: UpdatePostDto): Promise<{
         tags: {
             name: string;
-            id: string;
             postId: string;
+            id: string;
             created_at: Date;
             updated_at: Date;
         }[];

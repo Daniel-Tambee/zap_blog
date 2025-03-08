@@ -60,5 +60,17 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], CreatePostDTO.prototype, "category", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        description: 'Categories associated with the post',
+        type: [String],
+        isArray: true,
+        required: false,
+    }),
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)({ each: true }),
+    __metadata("design:type", Array)
+], CreatePostDTO.prototype, "Categories", void 0);
 exports.CreatePostDTO = CreatePostDTO;
 //# sourceMappingURL=create-post.dto.js.map

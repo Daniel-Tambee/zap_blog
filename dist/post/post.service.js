@@ -28,13 +28,29 @@ let PostService = class PostService {
         this.db = db;
     }
     async create(createPostDto) {
+        var _a;
         try {
-            const { tags } = createPostDto, postData = __rest(createPostDto, ["tags"]);
+            const { tags, category, Categories } = createPostDto, postData = __rest(createPostDto, ["tags", "category", "Categories"]);
+            const existingTags = await this.db.tags.findMany({
+                where: {
+                    name: {
+                        in: ((_a = tags === null || tags === void 0 ? void 0 : tags.map((tag) => tag.name)) !== null && _a !== void 0 ? _a : []).filter((name) => name),
+                    },
+                },
+            });
+            const existingCategories = await this.db.categoryThing.findMany({
+                where: {
+                    name: {
+                        in: Categories,
+                    },
+                },
+            });
+            const existingCategory = await this.db.categoryThing.findFirst({
+                where: { name: category },
+            });
             const tagRecords = await Promise.all(tags.map(async (tagDto) => {
                 const { name } = tagDto;
-                const existingTag = await this.db.tags.findUnique({
-                    where: { name },
-                });
+                const existingTag = existingTags.find((tag) => tag.name === name);
                 if (existingTag) {
                     return { id: existingTag.id };
                 }
@@ -43,17 +59,29 @@ let PostService = class PostService {
                 });
                 return { id: newTag.id };
             }));
+            const categoryRecords = await Promise.all(Categories.map(async (categoryName) => {
+                const existingCategory = existingCategories.find((category) => category.name === categoryName);
+                if (existingCategory) {
+                    return { id: existingCategory.id };
+                }
+                const newCategory = await this.db.categoryThing.create({
+                    data: { name: categoryName },
+                });
+                return { id: newCategory.id };
+            }));
             const post = await this.db.post.create({
                 data: Object.assign(Object.assign({}, postData), { tags: {
                         connect: tagRecords,
+                    }, category: 'Press', Categories: {
+                        connect: categoryRecords,
                     } }),
-                include: { tags: true },
+                include: { tags: true, Categories: true },
             });
             return post;
         }
         catch (error) {
             console.error('Error creating post:', error);
-            throw new Error('Failed to create post');
+            throw new Error(`Failed to create post: ${error.message || error}`);
         }
     }
     async findAll(category) {

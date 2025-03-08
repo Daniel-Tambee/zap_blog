@@ -8,8 +8,15 @@ export declare class PostController {
     create(createPostDto: CreatePostDTO): Promise<{
         tags: {
             name: string;
-            id: string;
             postId: string;
+            id: string;
+            created_at: Date;
+            updated_at: Date;
+        }[];
+        Categories: {
+            name: string;
+            postId: string;
+            id: string;
             created_at: Date;
             updated_at: Date;
         }[];
@@ -26,8 +33,8 @@ export declare class PostController {
     findAll(category?: Category): Promise<({
         tags: {
             name: string;
-            id: string;
             postId: string;
+            id: string;
             created_at: Date;
             updated_at: Date;
         }[];
@@ -54,8 +61,8 @@ export declare class PostController {
     findOne(id: string): Promise<{
         tags: {
             name: string;
-            id: string;
             postId: string;
+            id: string;
             created_at: Date;
             updated_at: Date;
         }[];
@@ -72,8 +79,8 @@ export declare class PostController {
     update(id: string, updatePostDto: UpdatePostDto): Promise<{
         tags: {
             name: string;
-            id: string;
             postId: string;
+            id: string;
             created_at: Date;
             updated_at: Date;
         }[];

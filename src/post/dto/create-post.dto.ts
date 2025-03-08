@@ -44,4 +44,15 @@ export class CreatePostDTO {
   @IsEnum(Category)
   @IsOptional()
   category?: Category = Category.Opinion_Pieces;
+
+  @ApiProperty({
+    description: 'Categories associated with the post',
+    type: [String], // Assuming that CategoryThing has a 'name' or similar identifier
+    isArray: true,
+    required: false,
+  })
+  @IsArray()
+  @IsOptional()
+  @IsString({ each: true })
+  Categories?: string[];
 }
