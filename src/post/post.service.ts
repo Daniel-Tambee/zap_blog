@@ -5,10 +5,14 @@ import { DbService } from 'src/db/db.service';
 import { Category, Post } from '@prisma/client';
 import { CreateTagDto } from 'src/tags/dto/create-tag.dto';
 import { CreateCategoryThingDto } from 'src/category/CreateCategoryThingDto';
+import { ExternalsService } from 'src/externals/externals.service';
 
 @Injectable()
 export class PostService {
-  constructor(private readonly db: DbService) {}
+  constructor(
+    private readonly db: DbService,
+    private readonly externals: ExternalsService,
+  ) {}
 
   async create(createPostDto: CreatePostDTO) {
     try {
@@ -99,8 +103,12 @@ export class PostService {
     }
   }
 
-  async findAll(category: Category) {
+  async findAll(category: Category, search: string) {
     try {
+      if (!search) {
+        const result = await this.externals.search(search);
+        return result;
+      }
       if (!category) {
         const posts = await this.db.post.findMany({
           include: { tags: true },
@@ -121,7 +129,7 @@ export class PostService {
 
   async findOne(id: string) {
     try {
-      const post = await this.db.post.findUniqueOrThrow({
+      const post = await this.db.post.findUnique({
         where: { id },
         include: { tags: true },
       });

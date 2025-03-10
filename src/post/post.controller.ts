@@ -1,14 +1,22 @@
-import { 
-  Controller, 
-  Post, 
-  Get, 
-  Patch, 
-  Delete, 
-  Body, 
-  Param, 
-  Query 
+import {
+  Controller,
+  Post,
+  Get,
+  Patch,
+  Delete,
+  Body,
+  Param,
+  Query,
+  Search,
 } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiQuery, ApiBody } from '@nestjs/swagger';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiParam,
+  ApiQuery,
+  ApiBody,
+} from '@nestjs/swagger';
 import { PostService } from './post.service';
 import { CreatePostDTO } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
@@ -27,16 +35,31 @@ export class PostController {
     return await this.postService.create(createPostDto);
   }
 
-  @Get()
+  @Get(':category/:search')
   @ApiOperation({ summary: 'Get all posts (optional filtering by category)' })
-  @ApiQuery({ name: 'category', required: false, enum: Category, description: 'Filter by category' })
-  @ApiResponse({ status: 200, description: 'List of posts retrieved successfully' })
-  async findAll(@Query('category') category?: Category) {
-    return await this.postService.findAll(category || null);
+  @ApiQuery({
+    name: 'category',
+    required: false,
+    enum: Category,
+    description: 'Filter by category',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'List of posts retrieved successfully',
+  })
+  async findAll(
+    @Query('category') category?: Category,
+    @Query('category') search?: Category,
+  ) {
+    return await this.postService.findAll(category || null, search || null);
   }
+
   @Get()
   @ApiOperation({ summary: 'Get all latest posts' })
-  @ApiResponse({ status: 200, description: 'List of  recent posts retrieved successfully' })
+  @ApiResponse({
+    status: 200,
+    description: 'List of  recent posts retrieved successfully',
+  })
   async recentPosts() {
     return await this.postService.getRecentPosts();
   }

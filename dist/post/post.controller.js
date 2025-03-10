@@ -26,8 +26,8 @@ let PostController = class PostController {
     async create(createPostDto) {
         return await this.postService.create(createPostDto);
     }
-    async findAll(category) {
-        return await this.postService.findAll(category || null);
+    async findAll(category, search) {
+        return await this.postService.findAll(category || null, search || null);
     }
     async recentPosts() {
         return await this.postService.getRecentPosts();
@@ -53,19 +53,31 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PostController.prototype, "create", null);
 __decorate([
-    (0, common_1.Get)(),
+    (0, common_1.Get)(':category/:search'),
     (0, swagger_1.ApiOperation)({ summary: 'Get all posts (optional filtering by category)' }),
-    (0, swagger_1.ApiQuery)({ name: 'category', required: false, enum: client_1.Category, description: 'Filter by category' }),
-    (0, swagger_1.ApiResponse)({ status: 200, description: 'List of posts retrieved successfully' }),
+    (0, swagger_1.ApiQuery)({
+        name: 'category',
+        required: false,
+        enum: client_1.Category,
+        description: 'Filter by category',
+    }),
+    (0, swagger_1.ApiResponse)({
+        status: 200,
+        description: 'List of posts retrieved successfully',
+    }),
     __param(0, (0, common_1.Query)('category')),
+    __param(1, (0, common_1.Query)('category')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Promise)
 ], PostController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(),
     (0, swagger_1.ApiOperation)({ summary: 'Get all latest posts' }),
-    (0, swagger_1.ApiResponse)({ status: 200, description: 'List of  recent posts retrieved successfully' }),
+    (0, swagger_1.ApiResponse)({
+        status: 200,
+        description: 'List of  recent posts retrieved successfully',
+    }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)

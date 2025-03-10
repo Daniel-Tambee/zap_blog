@@ -23,9 +23,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PostService = void 0;
 const common_1 = require("@nestjs/common");
 const db_service_1 = require("../db/db.service");
+const externals_service_1 = require("../externals/externals.service");
 let PostService = class PostService {
-    constructor(db) {
+    constructor(db, externals) {
         this.db = db;
+        this.externals = externals;
     }
     async create(createPostDto) {
         var _a;
@@ -84,8 +86,12 @@ let PostService = class PostService {
             throw new Error(`Failed to create post: ${error.message || error}`);
         }
     }
-    async findAll(category) {
+    async findAll(category, search) {
         try {
+            if (!search) {
+                const result = await this.externals.search(search);
+                return result;
+            }
             if (!category) {
                 const posts = await this.db.post.findMany({
                     include: { tags: true },
@@ -104,7 +110,7 @@ let PostService = class PostService {
     }
     async findOne(id) {
         try {
-            const post = await this.db.post.findUniqueOrThrow({
+            const post = await this.db.post.findUnique({
                 where: { id },
                 include: { tags: true },
             });
@@ -164,7 +170,8 @@ let PostService = class PostService {
 };
 PostService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [db_service_1.DbService])
+    __metadata("design:paramtypes", [db_service_1.DbService,
+        externals_service_1.ExternalsService])
 ], PostService);
 exports.PostService = PostService;
 //# sourceMappingURL=post.service.js.map
