@@ -13,13 +13,17 @@ const common_1 = require("@nestjs/common");
 const tags_module_1 = require("./tags/tags.module");
 const careers_module_1 = require("./careers/careers.module");
 const category_module_1 = require("./category/category.module");
+const db_service_1 = require("./db/db.service");
+const externals_controller_1 = require("./externals/externals.controller");
+const externals_service_1 = require("./externals/externals.service");
+const externals_module_1 = require("./externals/externals.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [post_module_1.PostModule, db_module_1.DbModule, tags_module_1.TagsModule, careers_module_1.CareersModule, category_module_1.CategoryModule],
-        controllers: [],
-        providers: [],
+        imports: [post_module_1.PostModule, db_module_1.DbModule, tags_module_1.TagsModule, careers_module_1.CareersModule, category_module_1.CategoryModule, externals_module_1.ExternalsModule],
+        controllers: [externals_controller_1.ExternalsController],
+        providers: [externals_service_1.ExternalsService, db_service_1.DbService],
     })
 ], AppModule);
 exports.AppModule = AppModule;
