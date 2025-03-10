@@ -26,8 +26,9 @@ let ExternalsService = class ExternalsService {
                 ],
             },
         });
+        console.log(posts);
         if (posts.length === 0) {
-            return null;
+            return [];
         }
         else if (posts.length === 1) {
             return posts[0];

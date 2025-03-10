@@ -33,7 +33,7 @@ export class ExternalsController {
     // Note: If using auto-generated Swagger documentation for Prisma models, you might need a DTO.
     type: Post,
   })
-  async search(@Query('query') query: string): Promise<unknown> {
+  async search(@Query('query') query: string): Promise<any> {
     return this.externals.search(query);
   }
 
