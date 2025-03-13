@@ -9,91 +9,91 @@ export declare class PostService {
     constructor(db: DbService, externals: ExternalsService);
     create(createPostDto: CreatePostDTO): Promise<{
         tags: {
-            id: string;
             name: string;
             postId: string;
+            id: string;
             created_at: Date;
             updated_at: Date;
         }[];
         Categories: {
-            id: string;
             name: string;
             postId: string;
+            id: string;
             created_at: Date;
             updated_at: Date;
         }[];
     } & {
-        category: import(".prisma/client").$Enums.Category;
-        image: string;
         title: string;
+        image: string;
         text: string;
         author: string;
+        category: import(".prisma/client").$Enums.Category;
         id: string;
         created_at: Date;
         updated_at: Date;
     }>;
     findAll(category: Category, search: string): Promise<{
-        category: import(".prisma/client").$Enums.Category;
-        image: string;
         title: string;
+        image: string;
         text: string;
         author: string;
+        category: import(".prisma/client").$Enums.Category;
         id: string;
         created_at: Date;
         updated_at: Date;
     } | {
-        category: import(".prisma/client").$Enums.Category;
-        image: string;
         title: string;
+        image: string;
         text: string;
         author: string;
+        category: import(".prisma/client").$Enums.Category;
         id: string;
         created_at: Date;
         updated_at: Date;
     }[]>;
     findOne(id: string): Promise<{
         tags: {
-            id: string;
             name: string;
             postId: string;
+            id: string;
             created_at: Date;
             updated_at: Date;
         }[];
     } & {
-        category: import(".prisma/client").$Enums.Category;
-        image: string;
         title: string;
+        image: string;
         text: string;
         author: string;
+        category: import(".prisma/client").$Enums.Category;
         id: string;
         created_at: Date;
         updated_at: Date;
     }>;
     update(id: string, updatePostDto: UpdatePostDto): Promise<{
         tags: {
-            id: string;
             name: string;
             postId: string;
+            id: string;
             created_at: Date;
             updated_at: Date;
         }[];
     } & {
-        category: import(".prisma/client").$Enums.Category;
-        image: string;
         title: string;
+        image: string;
         text: string;
         author: string;
+        category: import(".prisma/client").$Enums.Category;
         id: string;
         created_at: Date;
         updated_at: Date;
     }>;
     getRecentPosts(): Promise<Post[]>;
     remove(id: string): Promise<{
-        category: import(".prisma/client").$Enums.Category;
-        image: string;
         title: string;
+        image: string;
         text: string;
         author: string;
+        category: import(".prisma/client").$Enums.Category;
         id: string;
         created_at: Date;
         updated_at: Date;

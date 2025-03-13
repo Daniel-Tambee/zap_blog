@@ -8,9 +8,10 @@ import { DbService } from './db/db.service';
 import { ExternalsController } from './externals/externals.controller';
 import { ExternalsService } from './externals/externals.service';
 import { ExternalsModule } from './externals/externals.module';
+import { SubscriberModule } from './subscriber/subscriber.module';
 
 @Module({
-  imports: [PostModule, DbModule, TagsModule, CareersModule, CategoryModule, ExternalsModule],
+  imports: [PostModule, DbModule, TagsModule, CareersModule, CategoryModule, ExternalsModule, SubscriberModule],
   controllers: [ExternalsController],
   providers: [ExternalsService, DbService],
 })

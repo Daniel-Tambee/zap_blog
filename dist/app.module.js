@@ -17,11 +17,12 @@ const db_service_1 = require("./db/db.service");
 const externals_controller_1 = require("./externals/externals.controller");
 const externals_service_1 = require("./externals/externals.service");
 const externals_module_1 = require("./externals/externals.module");
+const subscriber_module_1 = require("./subscriber/subscriber.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [post_module_1.PostModule, db_module_1.DbModule, tags_module_1.TagsModule, careers_module_1.CareersModule, category_module_1.CategoryModule, externals_module_1.ExternalsModule],
+        imports: [post_module_1.PostModule, db_module_1.DbModule, tags_module_1.TagsModule, careers_module_1.CareersModule, category_module_1.CategoryModule, externals_module_1.ExternalsModule, subscriber_module_1.SubscriberModule],
         controllers: [externals_controller_1.ExternalsController],
         providers: [externals_service_1.ExternalsService, db_service_1.DbService],
     })
