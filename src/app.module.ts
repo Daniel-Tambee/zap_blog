@@ -9,9 +9,10 @@ import { ExternalsController } from './externals/externals.controller';
 import { ExternalsService } from './externals/externals.service';
 import { ExternalsModule } from './externals/externals.module';
 import { SubscriberModule } from './subscriber/subscriber.module';
+import { CommentModule } from './comment/comment.module';
 
 @Module({
-  imports: [PostModule, DbModule, TagsModule, CareersModule, CategoryModule, ExternalsModule, SubscriberModule],
+  imports: [PostModule, DbModule, TagsModule, CareersModule, CategoryModule, ExternalsModule, SubscriberModule, CommentModule],
   controllers: [ExternalsController],
   providers: [ExternalsService, DbService],
 })
