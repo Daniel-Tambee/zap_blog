@@ -21,6 +21,7 @@ model Post {
   author     String
   tags       Tags[]
   Categories CategoryThing[]
+  comments   Comment[]
   category   Category        @default(Opinion_Pieces)
   created_at DateTime        @default(now())
   updated_at DateTime        @updatedAt()
@@ -71,4 +72,15 @@ model Subscriber {
   Beginner_Guide Boolean
   created_at     DateTime @default(now())
   updated_at     DateTime @updatedAt()
+}
+
+model Comment {
+  id         String   @id @default(uuid()) @map("_id")
+  name       String?  @unique
+  email      String
+  content    String?
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt()
+  Post       Post?    @relation(fields: [postId], references: [id])
+  postId     String?
 }
